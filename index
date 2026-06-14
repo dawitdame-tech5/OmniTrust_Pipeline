@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OmniTrust — Country Stage Gate Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --s0: #7B8FA1;   /* Prospecting – slate */
+  --s1: #1D4ED8;   /* Active Engagement – blue */
+  --s2: #D97706;   /* LOI / MOU – amber */
+  --s3: #EA580C;   /* Contract Negotiated – orange */
+  --s4: #B91C1C;   /* Contract Executed – crimson */
+  --s5: #16A34A;   /* Go-Live – green */
+  --s6: #15803D;   /* First Revenue – deep green */
+  --s7: #0F4C2A;   /* Steady State – forest */
+  --border: #DDE3EC;
+  --ink: #0D1B2A;
+  --muted: #607590;
+  --bg: #F0F3F8;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  padding: 20px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  max-width: 1220px;
+  margin: 0 auto;
+  background: white;
+  padding: 22px 28px 18px;
+  box-shadow: 0 2px 16px rgba(13,27,42,0.10);
+}
+
+/* ────── HEADER ────── */
+.hd {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 12px;
+  border-bottom: 2.5px solid var(--ink);
+  margin-bottom: 14px;
+}
+
+.hd-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16.5px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.hd-sub {
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+.hd-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.meta-field {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.meta-val {
+  font-size: 10.5px;
+  color: var(--ink);
+  font-family: 'Space Grotesk', sans-serif;
+  border-bottom: 1px solid var(--border);
+  padding: 1px 6px;
+  min-width: 90px;
+  outline: none;
+}
+
+.meta-val:empty::before {
+  content: attr(data-ph);
+  color: #B0BEC8;
+  font-style: italic;
+  font-size: 9.5px;
+}
+
+.btn-print {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: white;
+  border: none;
+  padding: 6px 13px;
+  cursor: pointer;
+  border-radius: 1px;
+}
+.btn-print:hover { background: #1D4ED8; }
+
+/* ────── STAGE FLOW CHEVRONS ────── */
+.flow {
+  display: flex;
+  height: 34px;
+  margin-bottom: 12px;
+  gap: 0;
+}
+
+.fstage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: white;
+  flex: 1;
+  position: relative;
+  margin-left: -13px;
+  padding: 0 6px 0 20px;
+  clip-path: polygon(13px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 13px 100%, 0 50%);
+}
+
+.fstage:first-child {
+  margin-left: 0;
+  padding-left: 14px;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+}
+
+.fstage:last-child {
+  clip-path: polygon(13px 0, 100% 0, 100% 100%, 13px 100%, 0 50%);
+}
+
+.fs-0 { background: var(--s0); }
+.fs-1 { background: var(--s1); }
+.fs-c { background: var(--s3); flex: 1.8; }
+.fs-r { background: var(--s5); flex: 1.8; }
+
+.fstage-note {
+  font-size: 7.5px;
+  font-weight: 400;
+  opacity: 0.78;
+  margin-left: 6px;
+  letter-spacing: 0.04em;
+}
+
+/* ────── TABLE ────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid var(--border);
+}
+
+/* Group headers row */
+th.gh {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  padding: 5px 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-bottom: none;
+}
+
+.gh-s0 { background: var(--s0); }
+.gh-s1 { background: var(--s1); }
+.gh-cl { background: var(--s3); }
+.gh-rv { background: var(--s5); }
+
+/* Sub-header row */
+th.sh {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  padding: 5px 3px;
+  line-height: 1.35;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.sh-s0 { background: var(--s0); }
+.sh-s1 { background: var(--s1); }
+.sh-c0 { background: #C78C15; }  /* muted amber */
+.sh-c1 { background: var(--s3); }
+.sh-c2 { background: var(--s4); }
+.sh-r0 { background: #2E9E5C; }  /* lighter green */
+.sh-r1 { background: var(--s6); }
+.sh-r2 { background: var(--s7); }
+
+th.th-cntr {
+  background: #F1F5F9;
+  color: var(--muted);
+  text-align: left;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 5px 0 5px 10px;
+  min-width: 118px;
+  border-right: 2px solid var(--border);
+}
+
+th.th-notes {
+  background: #F1F5F9;
+  color: var(--muted);
+  text-align: left;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 5px 0 5px 8px;
+  min-width: 110px;
+  border-left: 2px solid var(--border);
+}
+
+/* Body rows */
+tbody tr:nth-child(odd) td  { background: #ffffff; }
+tbody tr:nth-child(even) td { background: #F7F9FC; }
+
+tbody tr:hover td { filter: brightness(0.96); }
+tbody tr:hover td.cntr { filter: none; background: #EEF3FA; }
+
+td {
+  height: 44px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+td.cntr {
+  text-align: left;
+  padding: 0 8px 0 0;
+  cursor: default;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  border-right: 2px solid var(--border);
+  border-left: 3px solid transparent;
+  min-width: 118px;
+  white-space: nowrap;
+}
+
+td.cntr-inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 0 0 10px;
+}
+
+td.notes {
+  text-align: left;
+  padding: 0 8px;
+  cursor: text;
+  font-size: 9.5px;
+  color: var(--muted);
+  border-left: 2px solid var(--border);
+  min-width: 110px;
+}
+
+td.notes:empty::before {
+  content: attr(data-ph);
+  color: #C7D4E0;
+  font-style: italic;
+}
+
+/* Divider between closing / revenue column groups */
+td[data-si="5"] { border-left: 2px solid var(--border); }
+th.sh-r0 { border-left: 2px solid rgba(255,255,255,0.4); }
+
+/* Indicators */
+.ind {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 2px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ind-done  { color: #A0B0C0; font-size: 12px; line-height: 1; }
+.ind-none  { color: #DCE4EE; font-size: 17px; line-height: 0; }
+.ind-dot   { width: 12px; height: 12px; border-radius: 50%; display: block; }
+
+.ind-date {
+  font-size: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: #8FA4B8;
+  pointer-events: all;
+  cursor: text;
+  border-bottom: 1px dashed #C8D8E8;
+  padding: 0 3px;
+  min-width: 34px;
+  text-align: center;
+  line-height: 1.4;
+  outline: none;
+}
+
+.ind-date:empty::before {
+  content: 'mm/yy';
+  color: #D0DCE8;
+  font-style: italic;
+}
+
+.ind-date:focus {
+  background: #EBF4FF;
+  border-bottom-color: #1D4ED8;
+  color: #0D1B2A;
+  border-radius: 1px;
+}
+
+.ind-date-current {
+  color: #4A7A5A;
+  border-bottom-color: #A8D4B8;
+}
+
+/* Priority stripe */
+tr.priority td.cntr { }
+tr.priority td.cntr .pmark {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #D97706;
+  margin-right: 7px;
+  flex-shrink: 0;
+}
+
+tr:not(.priority) .pmark { display: none; }
+
+/* Section divider after row 3 */
+tr.sec-break td {
+  border-bottom: 2px solid #C8D8E8;
+}
+
+/* ────── LEGEND ────── */
+.legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  padding-top: 9px;
+  border-top: 1px solid var(--border);
+  font-size: 9.5px;
+  color: var(--muted);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.lg-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink);
+}
+
+.li { display: flex; align-items: center; gap: 5px; }
+.li-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+.lg-hint {
+  margin-left: auto;
+  font-size: 9px;
+  color: #B8C8D8;
+  font-style: italic;
+}
+
+/* ────── PRINT ────── */
+@media print {
+  body { background: white; padding: 0; font-size: 9px; }
+  .page { box-shadow: none; padding: 10px 14px 12px; max-width: 100%; }
+  .btn-print { display: none; }
+  td { height: 38px; }
+  .fstage { font-size: 8px; }
+  .ind-date { font-size: 7.5px; }
+}
+
+/* Editable */
+[contenteditable] { outline: none; }
+[contenteditable]:focus { background: #EBF4FF !important; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── Header ── -->
+  <div class="hd">
+    <div>
+      <div class="hd-title">OmniTrust · Country Pipeline Stage Gate Framework</div>
+      <div class="hd-sub">Perennial Solutions &nbsp;·&nbsp; 17-Country DPI Deployment &nbsp;·&nbsp; TECH5 SPV &nbsp;·&nbsp; Pipeline Review Working Session</div>
+    </div>
+    <div class="hd-meta">
+      <div class="meta-field">
+        <span>Session</span>
+        <span class="meta-val" contenteditable="true" data-ph="DD MMM YYYY"></span>
+      </div>
+      <div class="meta-field">
+        <span>Rev</span>
+        <span class="meta-val" contenteditable="true" data-ph="v1.0"></span>
+      </div>
+      <button class="btn-print" onclick="window.print()">Print / PDF</button>
+    </div>
+  </div>
+
+  <!-- ── Stage Flow ── -->
+  <div class="flow">
+    <div class="fstage fs-0">Prospecting</div>
+    <div class="fstage fs-1">Active Engagement</div>
+    <div class="fstage fs-c">Closing <span class="fstage-note">LOI → Contract Neg → Contract Exec</span></div>
+    <div class="fstage fs-r">Revenue <span class="fstage-note">Go-Live → First Revenue → Steady State</span></div>
+  </div>
+
+  <!-- ── Pipeline Table ── -->
+  <table>
+    <thead>
+      <tr>
+        <th class="th-cntr" rowspan="2">Country</th>
+        <th class="gh gh-s0" rowspan="2">Prospecting</th>
+        <th class="gh gh-s1" rowspan="2">Active<br>Engagement</th>
+        <th class="gh gh-cl" colspan="3">— Closing —</th>
+        <th class="gh gh-rv" colspan="3">— Revenue —</th>
+        <th class="th-notes" rowspan="2">Notes</th>
+      </tr>
+      <tr>
+        <th class="sh sh-c0">LOI /<br>MOU Signed</th>
+        <th class="sh sh-c1">Contract<br>Negotiated</th>
+        <th class="sh sh-c2">Contract<br>Executed</th>
+        <th class="sh sh-r0">Go-Live /<br>Acceptance</th>
+        <th class="sh sh-r1">First<br>Revenue</th>
+        <th class="sh sh-r2">Steady<br>State</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <!-- ── Legend ── -->
+  <div class="legend">
+    <span class="lg-label">Key &nbsp;→</span>
+    <div class="li"><span style="color:#A0B0C0;font-size:13px;">✓</span> Stage complete</div>
+    <div class="li"><span class="li-dot" style="background:var(--s3)"></span> Current stage (click to set)</div>
+    <div class="li"><span style="color:#DCE4EE;font-size:16px;line-height:0">●</span> &nbsp;Not yet reached</div>
+    <div class="li"><span class="li-dot" style="background:#D97706"></span> Priority country (first 3)</div>
+    <div class="li" style="padding-left:8px;border-left:1px solid var(--border);">
+      <span style="color:#607590">Click cell to set stage · Click again to clear · Click date field to enter date · Names &amp; notes editable</span>
+    </div>
+    <div class="lg-hint">Perennial Solutions · Confidential Working Document</div>
+  </div>
+
+</div>
+
+<script>
+const STAGES = [
+  { label: 'Prospecting',          color: '#7B8FA1' },
+  { label: 'Active Engagement',    color: '#1D4ED8' },
+  { label: 'LOI / MOU Signed',     color: '#D97706' },
+  { label: 'Contract Negotiated',  color: '#EA580C' },
+  { label: 'Contract Executed',    color: '#B91C1C' },
+  { label: 'Go-Live / Acceptance', color: '#16A34A' },
+  { label: 'First Revenue',        color: '#15803D' },
+  { label: 'Steady State',         color: '#0F4C2A' },
+];
+
+const COUNTRIES = [
+  { name: 'Ethiopia',          priority: true,  stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Papua New Guinea',  priority: true,  stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Honduras',          priority: true,  stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 4',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 5',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 6',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 7',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 8',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 9',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 10',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 11',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 12',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 13',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 14',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 15',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 16',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Country 17',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+];
+
+function buildRow(c, idx) {
+  const tr = document.createElement('tr');
+  if (c.priority) tr.classList.add('priority');
+  if (idx === 2) tr.classList.add('sec-break'); // divider after row 3
+
+  // Country name
+  const cntrTd = document.createElement('td');
+  cntrTd.className = 'cntr';
+  cntrTd.style.borderLeft = '3px solid transparent';
+
+  const inner = document.createElement('div');
+  inner.className = 'cntr-inner';
+
+  const dot = document.createElement('span');
+  dot.className = 'pmark';
+  inner.appendChild(dot);
+
+  const nameSpan = document.createElement('span');
+  nameSpan.contentEditable = 'true';
+  nameSpan.textContent = c.name;
+  nameSpan.addEventListener('input', e => { c.name = e.target.textContent.trim(); });
+  inner.appendChild(nameSpan);
+  cntrTd.appendChild(inner);
+  tr.appendChild(cntrTd);
+
+  // Stage cells
+  for (let s = 0; s < STAGES.length; s++) {
+    const td = document.createElement('td');
+    td.dataset.si = s;
+    td.title = STAGES[s].label;
+
+    td.addEventListener('click', () => {
+      c.stage = (c.stage === s) ? -1 : s;
+      refreshRow(tr, c);
+    });
+
+    tr.appendChild(td);
+  }
+
+  // Notes
+  const notesTd = document.createElement('td');
+  notesTd.className = 'notes';
+  notesTd.contentEditable = 'true';
+  notesTd.dataset.ph = 'Add notes…';
+  notesTd.textContent = c.notes;
+  notesTd.addEventListener('input', e => { c.notes = e.target.textContent; });
+  tr.appendChild(notesTd);
+
+  refreshRow(tr, c);
+  return tr;
+}
+
+function refreshRow(tr, c) {
+  // Border left on country cell
+  const cntrTd = tr.querySelector('.cntr');
+  cntrTd.style.borderLeft = c.stage >= 0
+    ? `3px solid ${STAGES[c.stage].color}`
+    : '3px solid transparent';
+
+  // Stage cells
+  const stageTds = tr.querySelectorAll('td[data-si]');
+  stageTds.forEach((td, s) => {
+    td.innerHTML = '';
+    const div = document.createElement('div');
+    div.className = 'ind';
+
+    if (c.stage < 0) {
+      // Nothing set yet
+      div.innerHTML = `<span class="ind-none">·</span>`;
+    } else if (s < c.stage) {
+      // Completed — show tick + editable date
+      div.innerHTML = `<span class="ind-done">✓</span>`;
+      const dateSpan = makeDate(c, s, false);
+      div.appendChild(dateSpan);
+    } else if (s === c.stage) {
+      // Current — show dot + editable date
+      const dotSpan = document.createElement('span');
+      dotSpan.className = 'ind-dot';
+      dotSpan.style.background = STAGES[s].color;
+      div.appendChild(dotSpan);
+      const dateSpan = makeDate(c, s, true);
+      div.appendChild(dateSpan);
+    } else {
+      // Future
+      div.innerHTML = `<span class="ind-none">·</span>`;
+    }
+    td.appendChild(div);
+  });
+}
+
+function makeDate(c, s, isCurrent) {
+  const span = document.createElement('span');
+  span.className = 'ind-date' + (isCurrent ? ' ind-date-current' : '');
+  span.contentEditable = 'true';
+  span.textContent = c.dates[s] || '';
+
+  // Stop click from toggling the stage
+  span.addEventListener('click', e => e.stopPropagation());
+  span.addEventListener('mousedown', e => e.stopPropagation());
+
+  span.addEventListener('input', e => {
+    c.dates[s] = e.target.textContent.trim();
+  });
+
+  // Prevent newlines
+  span.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); span.blur(); }
+  });
+
+  return span;
+}
+
+const tbody = document.getElementById('tbody');
+COUNTRIES.forEach((c, i) => tbody.appendChild(buildRow(c, i)));
+</script>
+</body>
+</html>
