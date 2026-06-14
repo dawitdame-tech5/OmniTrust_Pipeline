@@ -3,28 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OmniTrust — Country Stage Gate Framework</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>OmniTrust — TECH5 Country Stage Gate Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --s0: #7B8FA1;   /* Prospecting – slate */
-  --s1: #1D4ED8;   /* Active Engagement – blue */
-  --s2: #D97706;   /* LOI / MOU – amber */
-  --s3: #EA580C;   /* Contract Negotiated – orange */
-  --s4: #B91C1C;   /* Contract Executed – crimson */
-  --s5: #16A34A;   /* Go-Live – green */
-  --s6: #15803D;   /* First Revenue – deep green */
-  --s7: #0F4C2A;   /* Steady State – forest */
-  --border: #DDE3EC;
-  --ink: #0D1B2A;
-  --muted: #607590;
-  --bg: #F0F3F8;
+  /* ── TECH5 Brand Palette ── */
+  --t5-orange:    #F26522;
+  --t5-navy:      #1B3A6A;
+  --t5-teal:      #006767;
+  --t5-dark:      #003148;
+  --t5-grey:      #3C3C3B;
+  --t5-lgrey:     #DDDFE1;
+  --t5-amber:     #FFA71A;
+  --t5-blue:      #1D71B8;
+  --t5-green:     #008D36;
+
+  /* ── Stage Colors ── */
+  --s0: #5A7A9A;   /* Prospecting */
+  --s1: #1D71B8;   /* Active Engagement */
+  --s2: #FFA71A;   /* LOI / MOU */
+  --s3: #F26522;   /* Contract Negotiated */
+  --s4: #C94E15;   /* Contract Executed */
+  --s5: #006767;   /* Go-Live */
+  --s6: #008D36;   /* First Revenue */
+  --s7: #003148;   /* Steady State */
+
+  --border: #D8DFE8;
+  --ink:    #1B3A6A;
+  --muted:  #607590;
+  --bg:     #EEF2F7;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   background: var(--bg);
   color: var(--ink);
   padding: 20px;
@@ -33,11 +46,26 @@ body {
 }
 
 .page {
-  max-width: 1220px;
+  max-width: 1230px;
   margin: 0 auto;
   background: white;
-  padding: 22px 28px 18px;
-  box-shadow: 0 2px 16px rgba(13,27,42,0.10);
+  padding: 0;
+  box-shadow: 0 2px 20px rgba(27,58,106,0.12);
+  position: relative;
+  border-top: 4px solid var(--t5-orange);
+}
+
+/* ── Orange left accent bar ── */
+.page::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: var(--t5-orange);
+}
+
+.inner {
+  padding: 20px 28px 18px 32px;
 }
 
 /* ────── HEADER ────── */
@@ -46,22 +74,62 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   padding-bottom: 12px;
-  border-bottom: 2.5px solid var(--ink);
   margin-bottom: 14px;
+  border-bottom: 2px solid var(--t5-navy);
+  position: relative;
+}
+
+/* Orange underline accent */
+.hd::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--t5-orange);
+}
+
+/* TECH5 logo wordmark */
+.t5-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.t5-wordmark {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--t5-navy);
+  text-transform: uppercase;
+}
+
+.t5-wordmark span {
+  color: var(--t5-orange);
+}
+
+.t5-tagline {
+  font-size: 8.5px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
 }
 
 .hd-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16.5px;
+  font-size: 15.5px;
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   color: var(--ink);
+  line-height: 1.1;
 }
 
 .hd-sub {
-  font-size: 9.5px;
+  font-size: 9px;
+  font-weight: 500;
   color: var(--muted);
-  letter-spacing: 0.09em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-top: 3px;
 }
@@ -76,60 +144,61 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 10px;
+  font-size: 9.5px;
+  font-weight: 600;
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
 
 .meta-val {
-  font-size: 10.5px;
+  font-size: 10px;
+  font-weight: 600;
   color: var(--ink);
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   border-bottom: 1px solid var(--border);
   padding: 1px 6px;
-  min-width: 90px;
+  min-width: 88px;
   outline: none;
 }
 
 .meta-val:empty::before {
   content: attr(data-ph);
   color: #B0BEC8;
+  font-weight: 400;
   font-style: italic;
-  font-size: 9.5px;
+  font-size: 9px;
 }
 
 .btn-print {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: var(--ink);
+  background: var(--t5-orange);
   color: white;
   border: none;
-  padding: 6px 13px;
+  padding: 7px 14px;
   cursor: pointer;
-  border-radius: 1px;
 }
-.btn-print:hover { background: #1D4ED8; }
+.btn-print:hover { background: #D4551A; }
 
 /* ────── STAGE FLOW CHEVRONS ────── */
 .flow {
   display: flex;
-  height: 34px;
+  height: 32px;
   margin-bottom: 12px;
-  gap: 0;
 }
 
 .fstage {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 9px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8.5px;
   font-weight: 700;
-  letter-spacing: 0.09em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: white;
   flex: 1;
@@ -151,15 +220,15 @@ body {
 
 .fs-0 { background: var(--s0); }
 .fs-1 { background: var(--s1); }
-.fs-c { background: var(--s3); flex: 1.8; }
-.fs-r { background: var(--s5); flex: 1.8; }
+.fs-c { background: var(--t5-orange); flex: 1.8; }
+.fs-r { background: var(--t5-teal); flex: 1.8; }
 
 .fstage-note {
-  font-size: 7.5px;
+  font-size: 7px;
   font-weight: 400;
-  opacity: 0.78;
-  margin-left: 6px;
-  letter-spacing: 0.04em;
+  opacity: 0.82;
+  margin-left: 7px;
+  letter-spacing: 0.03em;
 }
 
 /* ────── TABLE ────── */
@@ -172,55 +241,54 @@ th, td {
   border: 1px solid var(--border);
 }
 
-/* Group headers row */
+/* Group header row */
 th.gh {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 9.5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
   font-weight: 700;
-  color: white;
   text-align: center;
   padding: 5px 4px;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.08em;
   border-bottom: none;
 }
 
-.gh-s0 { background: var(--s0); }
-.gh-s1 { background: var(--s1); }
-.gh-cl { background: var(--s3); }
-.gh-rv { background: var(--s5); }
+.gh-s0 { background: var(--s0); color: white; }
+.gh-s1 { background: var(--s1); color: white; }
+.gh-cl { background: var(--t5-orange); color: white; }
+.gh-rv { background: var(--t5-teal); color: white; }
 
 /* Sub-header row */
 th.sh {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 8.5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
   font-weight: 600;
-  color: white;
   text-align: center;
   padding: 5px 3px;
   line-height: 1.35;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-top: 1px solid rgba(255,255,255,0.2);
+  letter-spacing: 0.04em;
+  color: white;
+  border-top: 1px solid rgba(255,255,255,0.22);
 }
 
 .sh-s0 { background: var(--s0); }
 .sh-s1 { background: var(--s1); }
-.sh-c0 { background: #C78C15; }  /* muted amber */
-.sh-c1 { background: var(--s3); }
+.sh-c0 { background: #E8981C; }
+.sh-c1 { background: var(--t5-orange); }
 .sh-c2 { background: var(--s4); }
-.sh-r0 { background: #2E9E5C; }  /* lighter green */
-.sh-r1 { background: var(--s6); }
-.sh-r2 { background: var(--s7); }
+.sh-r0 { background: #1A8080; }
+.sh-r1 { background: var(--t5-green); }
+.sh-r2 { background: var(--t5-dark); }
 
 th.th-cntr {
-  background: #F1F5F9;
+  background: #F0F3F8;
   color: var(--muted);
   text-align: left;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 8.5px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 5px 0 5px 10px;
   min-width: 118px;
@@ -228,13 +296,13 @@ th.th-cntr {
 }
 
 th.th-notes {
-  background: #F1F5F9;
+  background: #F0F3F8;
   color: var(--muted);
   text-align: left;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 8.5px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 5px 0 5px 8px;
   min-width: 110px;
@@ -242,11 +310,10 @@ th.th-notes {
 }
 
 /* Body rows */
-tbody tr:nth-child(odd) td  { background: #ffffff; }
+tbody tr:nth-child(odd)  td { background: #ffffff; }
 tbody tr:nth-child(even) td { background: #F7F9FC; }
-
-tbody tr:hover td { filter: brightness(0.96); }
-tbody tr:hover td.cntr { filter: none; background: #EEF3FA; }
+tbody tr:hover td { filter: brightness(0.965); }
+tbody tr:hover td.cntr { filter: none; background: #EDF2FA; }
 
 td {
   height: 44px;
@@ -260,17 +327,18 @@ td.cntr {
   text-align: left;
   padding: 0 8px 0 0;
   cursor: default;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
   letter-spacing: -0.01em;
   border-right: 2px solid var(--border);
   border-left: 3px solid transparent;
   min-width: 118px;
   white-space: nowrap;
+  color: var(--t5-navy);
 }
 
-td.cntr-inner {
+.cntr-inner {
   display: flex;
   align-items: center;
   height: 100%;
@@ -289,13 +357,14 @@ td.notes {
 
 td.notes:empty::before {
   content: attr(data-ph);
-  color: #C7D4E0;
+  color: #C0CDD8;
   font-style: italic;
+  font-size: 9px;
 }
 
-/* Divider between closing / revenue column groups */
+/* Revenue group left divider */
 td[data-si="5"] { border-left: 2px solid var(--border); }
-th.sh-r0 { border-left: 2px solid rgba(255,255,255,0.4); }
+th.sh-r0 { border-left: 2px solid rgba(255,255,255,0.35); }
 
 /* Indicators */
 .ind {
@@ -309,14 +378,14 @@ th.sh-r0 { border-left: 2px solid rgba(255,255,255,0.4); }
   user-select: none;
 }
 
-.ind-done  { color: #A0B0C0; font-size: 12px; line-height: 1; }
-.ind-none  { color: #DCE4EE; font-size: 17px; line-height: 0; }
-.ind-dot   { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.ind-done { color: #A0B0C0; font-size: 12px; line-height: 1; }
+.ind-none { color: #DCE4EE; font-size: 17px; line-height: 0; }
+.ind-dot  { width: 12px; height: 12px; border-radius: 50%; display: block; }
 
 .ind-date {
-  font-size: 8px;
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 500;
+  font-size: 7.5px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
   letter-spacing: 0.03em;
   color: #8FA4B8;
   pointer-events: all;
@@ -325,67 +394,65 @@ th.sh-r0 { border-left: 2px solid rgba(255,255,255,0.4); }
   padding: 0 3px;
   min-width: 34px;
   text-align: center;
-  line-height: 1.4;
+  line-height: 1.5;
   outline: none;
 }
 
 .ind-date:empty::before {
   content: 'mm/yy';
   color: #D0DCE8;
+  font-weight: 400;
   font-style: italic;
 }
 
 .ind-date:focus {
-  background: #EBF4FF;
-  border-bottom-color: #1D4ED8;
-  color: #0D1B2A;
+  background: #FFF3EC;
+  border-bottom-color: var(--t5-orange);
+  color: var(--t5-navy);
   border-radius: 1px;
 }
 
 .ind-date-current {
-  color: #4A7A5A;
-  border-bottom-color: #A8D4B8;
+  color: #1A8080;
+  border-bottom-color: #A0C8C8;
 }
 
-/* Priority stripe */
-tr.priority td.cntr { }
+/* Priority marker */
 tr.priority td.cntr .pmark {
   display: inline-block;
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #D97706;
+  background: var(--t5-orange);
   margin-right: 7px;
   flex-shrink: 0;
 }
 
 tr:not(.priority) .pmark { display: none; }
 
-/* Section divider after row 3 */
-tr.sec-break td {
-  border-bottom: 2px solid #C8D8E8;
-}
+/* Divider after priority block */
+tr.sec-break td { border-bottom: 2px solid #C5D3E0; }
 
 /* ────── LEGEND ────── */
 .legend {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   margin-top: 10px;
   padding-top: 9px;
   border-top: 1px solid var(--border);
-  font-size: 9.5px;
+  font-size: 9px;
+  font-weight: 500;
   color: var(--muted);
   align-items: center;
   flex-wrap: wrap;
 }
 
 .lg-label {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 9px;
+  font-weight: 800;
+  font-size: 8.5px;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--ink);
+  letter-spacing: 0.08em;
+  color: var(--t5-navy);
 }
 
 .li { display: flex; align-items: center; gap: 5px; }
@@ -393,34 +460,41 @@ tr.sec-break td {
 
 .lg-hint {
   margin-left: auto;
-  font-size: 9px;
+  font-size: 8.5px;
+  font-weight: 500;
   color: #B8C8D8;
-  font-style: italic;
+  letter-spacing: 0.04em;
 }
 
 /* ────── PRINT ────── */
 @media print {
-  body { background: white; padding: 0; font-size: 9px; }
-  .page { box-shadow: none; padding: 10px 14px 12px; max-width: 100%; }
+  body { background: white; padding: 0; }
+  .page { box-shadow: none; max-width: 100%; border-top: 4px solid var(--t5-orange); }
+  .page::before { width: 4px; }
+  .inner { padding: 10px 14px 12px 18px; }
   .btn-print { display: none; }
-  td { height: 38px; }
-  .fstage { font-size: 8px; }
-  .ind-date { font-size: 7.5px; }
+  td { height: 36px; }
+  .fstage { font-size: 7.5px; }
+  .ind-date { font-size: 7px; }
 }
 
-/* Editable */
 [contenteditable] { outline: none; }
-[contenteditable]:focus { background: #EBF4FF !important; }
+[contenteditable]:focus { background: #FFF3EC !important; }
 </style>
 </head>
 <body>
 <div class="page">
+<div class="inner">
 
   <!-- ── Header ── -->
   <div class="hd">
     <div>
+      <div class="t5-logo">
+        <span class="t5-wordmark">TECH<span>5</span>®</span>
+        <span class="t5-tagline">Technologies for Inclusion</span>
+      </div>
       <div class="hd-title">OmniTrust · Country Pipeline Stage Gate Framework</div>
-      <div class="hd-sub">Perennial Solutions &nbsp;·&nbsp; 17-Country DPI Deployment &nbsp;·&nbsp; TECH5 SPV &nbsp;·&nbsp; Pipeline Review Working Session</div>
+      <div class="hd-sub">TECH5 &nbsp;·&nbsp; OmniTrust DPI Venture &nbsp;·&nbsp; 17-Country Deployment Pipeline &nbsp;·&nbsp; Pipeline Review Working Session</div>
     </div>
     <div class="hd-meta">
       <div class="meta-field">
@@ -468,29 +542,30 @@ tr.sec-break td {
 
   <!-- ── Legend ── -->
   <div class="legend">
-    <span class="lg-label">Key &nbsp;→</span>
-    <div class="li"><span style="color:#A0B0C0;font-size:13px;">✓</span> Stage complete</div>
-    <div class="li"><span class="li-dot" style="background:var(--s3)"></span> Current stage (click to set)</div>
-    <div class="li"><span style="color:#DCE4EE;font-size:16px;line-height:0">●</span> &nbsp;Not yet reached</div>
-    <div class="li"><span class="li-dot" style="background:#D97706"></span> Priority country (first 3)</div>
+    <span class="lg-label">Key →</span>
+    <div class="li"><span style="color:#A0B0C0;font-size:13px;font-weight:700;">✓</span> Stage complete</div>
+    <div class="li"><span class="li-dot" style="background:var(--t5-orange)"></span> Current stage (click to set)</div>
+    <div class="li"><span style="color:#DCE4EE;font-size:16px;line-height:0">●</span>&nbsp; Not yet reached</div>
+    <div class="li"><span class="li-dot" style="background:var(--t5-orange)"></span> Priority country (★)</div>
     <div class="li" style="padding-left:8px;border-left:1px solid var(--border);">
-      <span style="color:#607590">Click cell to set stage · Click again to clear · Click date field to enter date · Names &amp; notes editable</span>
+      <span>Click cell to set stage · Click again to clear · Click date to enter · Names &amp; notes editable</span>
     </div>
-    <div class="lg-hint">Perennial Solutions · Confidential Working Document</div>
+    <div class="lg-hint">TECH5 · Confidential Working Document</div>
   </div>
 
-</div>
+</div><!-- /inner -->
+</div><!-- /page -->
 
 <script>
 const STAGES = [
-  { label: 'Prospecting',          color: '#7B8FA1' },
-  { label: 'Active Engagement',    color: '#1D4ED8' },
-  { label: 'LOI / MOU Signed',     color: '#D97706' },
-  { label: 'Contract Negotiated',  color: '#EA580C' },
-  { label: 'Contract Executed',    color: '#B91C1C' },
-  { label: 'Go-Live / Acceptance', color: '#16A34A' },
-  { label: 'First Revenue',        color: '#15803D' },
-  { label: 'Steady State',         color: '#0F4C2A' },
+  { label: 'Prospecting',          color: '#5A7A9A' },
+  { label: 'Active Engagement',    color: '#1D71B8' },
+  { label: 'LOI / MOU Signed',     color: '#FFA71A' },
+  { label: 'Contract Negotiated',  color: '#F26522' },
+  { label: 'Contract Executed',    color: '#C94E15' },
+  { label: 'Go-Live / Acceptance', color: '#006767' },
+  { label: 'First Revenue',        color: '#008D36' },
+  { label: 'Steady State',         color: '#003148' },
 ];
 
 const COUNTRIES = [
@@ -516,9 +591,8 @@ const COUNTRIES = [
 function buildRow(c, idx) {
   const tr = document.createElement('tr');
   if (c.priority) tr.classList.add('priority');
-  if (idx === 2) tr.classList.add('sec-break'); // divider after row 3
+  if (idx === 2) tr.classList.add('sec-break');
 
-  // Country name
   const cntrTd = document.createElement('td');
   cntrTd.className = 'cntr';
   cntrTd.style.borderLeft = '3px solid transparent';
@@ -538,21 +612,17 @@ function buildRow(c, idx) {
   cntrTd.appendChild(inner);
   tr.appendChild(cntrTd);
 
-  // Stage cells
   for (let s = 0; s < STAGES.length; s++) {
     const td = document.createElement('td');
     td.dataset.si = s;
     td.title = STAGES[s].label;
-
     td.addEventListener('click', () => {
       c.stage = (c.stage === s) ? -1 : s;
       refreshRow(tr, c);
     });
-
     tr.appendChild(td);
   }
 
-  // Notes
   const notesTd = document.createElement('td');
   notesTd.className = 'notes';
   notesTd.contentEditable = 'true';
@@ -565,64 +635,45 @@ function buildRow(c, idx) {
   return tr;
 }
 
-function refreshRow(tr, c) {
-  // Border left on country cell
-  const cntrTd = tr.querySelector('.cntr');
-  cntrTd.style.borderLeft = c.stage >= 0
-    ? `3px solid ${STAGES[c.stage].color}`
-    : '3px solid transparent';
-
-  // Stage cells
-  const stageTds = tr.querySelectorAll('td[data-si]');
-  stageTds.forEach((td, s) => {
-    td.innerHTML = '';
-    const div = document.createElement('div');
-    div.className = 'ind';
-
-    if (c.stage < 0) {
-      // Nothing set yet
-      div.innerHTML = `<span class="ind-none">·</span>`;
-    } else if (s < c.stage) {
-      // Completed — show tick + editable date
-      div.innerHTML = `<span class="ind-done">✓</span>`;
-      const dateSpan = makeDate(c, s, false);
-      div.appendChild(dateSpan);
-    } else if (s === c.stage) {
-      // Current — show dot + editable date
-      const dotSpan = document.createElement('span');
-      dotSpan.className = 'ind-dot';
-      dotSpan.style.background = STAGES[s].color;
-      div.appendChild(dotSpan);
-      const dateSpan = makeDate(c, s, true);
-      div.appendChild(dateSpan);
-    } else {
-      // Future
-      div.innerHTML = `<span class="ind-none">·</span>`;
-    }
-    td.appendChild(div);
-  });
-}
-
 function makeDate(c, s, isCurrent) {
   const span = document.createElement('span');
   span.className = 'ind-date' + (isCurrent ? ' ind-date-current' : '');
   span.contentEditable = 'true';
   span.textContent = c.dates[s] || '';
-
-  // Stop click from toggling the stage
   span.addEventListener('click', e => e.stopPropagation());
   span.addEventListener('mousedown', e => e.stopPropagation());
-
-  span.addEventListener('input', e => {
-    c.dates[s] = e.target.textContent.trim();
-  });
-
-  // Prevent newlines
-  span.addEventListener('keydown', e => {
-    if (e.key === 'Enter') { e.preventDefault(); span.blur(); }
-  });
-
+  span.addEventListener('input', e => { c.dates[s] = e.target.textContent.trim(); });
+  span.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); span.blur(); } });
   return span;
+}
+
+function refreshRow(tr, c) {
+  const cntrTd = tr.querySelector('.cntr');
+  cntrTd.style.borderLeft = c.stage >= 0
+    ? `3px solid ${STAGES[c.stage].color}`
+    : '3px solid transparent';
+
+  tr.querySelectorAll('td[data-si]').forEach((td, s) => {
+    td.innerHTML = '';
+    const div = document.createElement('div');
+    div.className = 'ind';
+
+    if (c.stage < 0) {
+      div.innerHTML = `<span class="ind-none">·</span>`;
+    } else if (s < c.stage) {
+      div.innerHTML = `<span class="ind-done">✓</span>`;
+      div.appendChild(makeDate(c, s, false));
+    } else if (s === c.stage) {
+      const dot = document.createElement('span');
+      dot.className = 'ind-dot';
+      dot.style.background = STAGES[s].color;
+      div.appendChild(dot);
+      div.appendChild(makeDate(c, s, true));
+    } else {
+      div.innerHTML = `<span class="ind-none">·</span>`;
+    }
+    td.appendChild(div);
+  });
 }
 
 const tbody = document.getElementById('tbody');
