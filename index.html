@@ -9,26 +9,32 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  /* ── TECH5 Brand Palette ── */
-  --t5-orange:    #F26522;
-  --t5-navy:      #1B3A6A;
-  --t5-teal:      #006767;
-  --t5-dark:      #003148;
-  --t5-grey:      #3C3C3B;
-  --t5-lgrey:     #DDDFE1;
-  --t5-amber:     #FFA71A;
-  --t5-blue:      #1D71B8;
-  --t5-green:     #008D36;
+  /* ── TECH5 Brand ── */
+  --t5-orange: #F26522;
+  --t5-navy:   #1B3A6A;
+  --t5-teal:   #006767;
+  --t5-dark:   #003148;
+  --t5-green:  #008D36;
+  --t5-blue:   #1D71B8;
+  --t5-amber:  #FFA71A;
 
-  /* ── Stage Colors ── */
-  --s0: #5A7A9A;   /* Prospecting */
-  --s1: #1D71B8;   /* Active Engagement */
-  --s2: #FFA71A;   /* LOI / MOU */
-  --s3: #F26522;   /* Contract Negotiated */
-  --s4: #C94E15;   /* Contract Executed */
-  --s5: #006767;   /* Go-Live */
-  --s6: #008D36;   /* First Revenue */
-  --s7: #003148;   /* Steady State */
+  /* ── 12 Stage Colors ── */
+  /* Prospecting */
+  --s1:  #5A7A9A;
+  /* Active Engagement */
+  --s2:  #1D71B8;
+  --s3:  #1660A8;
+  --s4:  #0F4E98;
+  /* Closing */
+  --s5:  #E8981C;
+  --s6:  #F0940C;
+  --s7:  #F26522;
+  --s8:  #D45018;
+  --s9:  #C94E15;
+  /* Revenue */
+  --s10: #006767;
+  --s11: #008D36;
+  --s12: #003148;
 
   --border: #D8DFE8;
   --ink:    #1B3A6A;
@@ -46,16 +52,14 @@ body {
 }
 
 .page {
-  max-width: 1230px;
+  max-width: 1280px;
   margin: 0 auto;
   background: white;
-  padding: 0;
   box-shadow: 0 2px 20px rgba(27,58,106,0.12);
   position: relative;
   border-top: 4px solid var(--t5-orange);
 }
 
-/* ── Orange left accent bar ── */
 .page::before {
   content: '';
   position: absolute;
@@ -64,418 +68,216 @@ body {
   background: var(--t5-orange);
 }
 
-.inner {
-  padding: 20px 28px 18px 32px;
-}
+.inner { padding: 20px 26px 16px 30px; }
 
-/* ────── HEADER ────── */
+/* ── Header ── */
 .hd {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-bottom: 12px;
-  margin-bottom: 14px;
+  padding-bottom: 11px;
+  margin-bottom: 13px;
   border-bottom: 2px solid var(--t5-navy);
   position: relative;
 }
-
-/* Orange underline accent */
 .hd::after {
   content: '';
   position: absolute;
   bottom: -2px; left: 0;
-  width: 60px;
-  height: 2px;
+  width: 56px; height: 2px;
   background: var(--t5-orange);
 }
 
-/* TECH5 logo wordmark */
-.t5-logo {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-
+.t5-logo { display: flex; align-items: baseline; gap: 8px; margin-bottom: 5px; }
 .t5-wordmark {
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--t5-navy);
+  font-size: 12.5px; font-weight: 800;
+  letter-spacing: 0.12em; color: var(--t5-navy);
   text-transform: uppercase;
 }
+.t5-wordmark span { color: var(--t5-orange); }
+.t5-tagline { font-size: 8px; font-weight: 400; color: var(--muted); letter-spacing: 0.07em; text-transform: uppercase; }
 
-.t5-wordmark span {
-  color: var(--t5-orange);
-}
+.hd-title { font-size: 15px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
+.hd-sub   { font-size: 8.5px; font-weight: 500; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
 
-.t5-tagline {
-  font-size: 8.5px;
-  font-weight: 400;
-  color: var(--muted);
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-}
-
-.hd-title {
-  font-size: 15.5px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  line-height: 1.1;
-}
-
-.hd-sub {
-  font-size: 9px;
-  font-weight: 500;
-  color: var(--muted);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-top: 3px;
-}
-
-.hd-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.meta-field {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 9.5px;
-  font-weight: 600;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
+.hd-meta  { display: flex; align-items: center; gap: 10px; }
+.meta-field { display: flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 .meta-val {
-  font-size: 10px;
-  font-weight: 600;
-  color: var(--ink);
-  font-family: 'Montserrat', sans-serif;
+  font-size: 9.5px; font-weight: 600; color: var(--ink);
   border-bottom: 1px solid var(--border);
-  padding: 1px 6px;
-  min-width: 88px;
-  outline: none;
+  padding: 1px 6px; min-width: 88px; outline: none;
 }
-
-.meta-val:empty::before {
-  content: attr(data-ph);
-  color: #B0BEC8;
-  font-weight: 400;
-  font-style: italic;
-  font-size: 9px;
-}
+.meta-val:empty::before { content: attr(data-ph); color: #B0BEC8; font-weight: 400; font-style: italic; font-size: 9px; }
 
 .btn-print {
   font-family: 'Montserrat', sans-serif;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: var(--t5-orange);
-  color: white;
-  border: none;
-  padding: 7px 14px;
-  cursor: pointer;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  background: var(--t5-orange); color: white; border: none; padding: 7px 13px; cursor: pointer;
 }
 .btn-print:hover { background: #D4551A; }
 
-/* ────── STAGE FLOW CHEVRONS ────── */
-.flow {
-  display: flex;
-  height: 32px;
-  margin-bottom: 12px;
-}
+/* ── Stage Flow Chevrons ── */
+.flow { display: flex; height: 30px; margin-bottom: 11px; }
 
 .fstage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   font-family: 'Montserrat', sans-serif;
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: white;
-  flex: 1;
-  position: relative;
-  margin-left: -13px;
-  padding: 0 6px 0 20px;
-  clip-path: polygon(13px 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 13px 100%, 0 50%);
+  font-size: 8px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  color: white; position: relative;
+  margin-left: -12px; padding: 0 4px 0 18px;
+  clip-path: polygon(12px 0, calc(100% - 13px) 0, 100% 50%, calc(100% - 13px) 100%, 12px 100%, 0 50%);
 }
+.fstage:first-child { margin-left: 0; padding-left: 12px; clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 50%, calc(100% - 13px) 100%, 0 100%); }
+.fstage:last-child  { clip-path: polygon(12px 0, 100% 0, 100% 100%, 12px 100%, 0 50%); }
 
-.fstage:first-child {
-  margin-left: 0;
-  padding-left: 14px;
-  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
-}
+.fs-p  { background: var(--s1);  flex: 0.7; }
+.fs-ae { background: var(--s2);  flex: 2.2; }
+.fs-cl { background: var(--t5-orange); flex: 3.8; }
+.fs-rv { background: var(--t5-teal);   flex: 2.3; }
 
-.fstage:last-child {
-  clip-path: polygon(13px 0, 100% 0, 100% 100%, 13px 100%, 0 50%);
-}
+.fstage-note { font-size: 6.8px; font-weight: 400; opacity: 0.82; margin-left: 6px; letter-spacing: 0.02em; }
 
-.fs-0 { background: var(--s0); }
-.fs-1 { background: var(--s1); }
-.fs-c { background: var(--t5-orange); flex: 1.8; }
-.fs-r { background: var(--t5-teal); flex: 1.8; }
+/* ── Table ── */
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid var(--border); }
 
-.fstage-note {
-  font-size: 7px;
-  font-weight: 400;
-  opacity: 0.82;
-  margin-left: 7px;
-  letter-spacing: 0.03em;
-}
-
-/* ────── TABLE ────── */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  border: 1px solid var(--border);
-}
-
-/* Group header row */
 th.gh {
   font-family: 'Montserrat', sans-serif;
-  font-size: 9px;
-  font-weight: 700;
-  text-align: center;
-  padding: 5px 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  border-bottom: none;
+  font-size: 8.5px; font-weight: 700;
+  text-align: center; padding: 5px 3px;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  border-bottom: none; color: white;
 }
 
-.gh-s0 { background: var(--s0); color: white; }
-.gh-s1 { background: var(--s1); color: white; }
-.gh-cl { background: var(--t5-orange); color: white; }
-.gh-rv { background: var(--t5-teal); color: white; }
+.gh-p  { background: var(--s1); }
+.gh-ae { background: var(--s2); }
+.gh-cl { background: var(--t5-orange); }
+.gh-rv { background: var(--t5-teal); }
 
-/* Sub-header row */
 th.sh {
   font-family: 'Montserrat', sans-serif;
-  font-size: 8px;
-  font-weight: 600;
-  text-align: center;
-  padding: 5px 3px;
-  line-height: 1.35;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-size: 7.5px; font-weight: 600;
+  text-align: center; padding: 4px 2px;
+  line-height: 1.3; text-transform: uppercase; letter-spacing: 0.03em;
   color: white;
   border-top: 1px solid rgba(255,255,255,0.22);
 }
 
-.sh-s0 { background: var(--s0); }
-.sh-s1 { background: var(--s1); }
-.sh-c0 { background: #E8981C; }
-.sh-c1 { background: var(--t5-orange); }
-.sh-c2 { background: var(--s4); }
-.sh-r0 { background: #1A8080; }
-.sh-r1 { background: var(--t5-green); }
-.sh-r2 { background: var(--t5-dark); }
+.sh-1  { background: var(--s1);  }
+.sh-2  { background: var(--s2);  }
+.sh-3  { background: var(--s3);  }
+.sh-4  { background: var(--s4);  }
+.sh-5  { background: var(--s5);  }
+.sh-6  { background: var(--s6);  }
+.sh-7  { background: var(--s7);  }
+.sh-8  { background: var(--s8);  }
+.sh-9  { background: var(--s9);  }
+.sh-10 { background: var(--s10); }
+.sh-11 { background: var(--s11); }
+.sh-12 { background: var(--s12); }
 
 th.th-cntr {
-  background: #F0F3F8;
-  color: var(--muted);
-  text-align: left;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 5px 0 5px 10px;
-  min-width: 118px;
+  background: #F0F3F8; color: var(--muted); text-align: left;
+  font-family: 'Montserrat', sans-serif; font-size: 8px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 5px 0 5px 10px; min-width: 112px;
   border-right: 2px solid var(--border);
 }
-
 th.th-notes {
-  background: #F0F3F8;
-  color: var(--muted);
-  text-align: left;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 5px 0 5px 8px;
-  min-width: 110px;
+  background: #F0F3F8; color: var(--muted); text-align: left;
+  font-family: 'Montserrat', sans-serif; font-size: 8px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 5px 0 5px 7px; min-width: 95px;
   border-left: 2px solid var(--border);
 }
 
-/* Body rows */
+/* Revenue left divider */
+td[data-si="9"]  { border-left: 2px solid var(--border); }
+th.sh-10 { border-left: 2px solid rgba(255,255,255,0.35); }
+
+/* Body */
 tbody tr:nth-child(odd)  td { background: #ffffff; }
 tbody tr:nth-child(even) td { background: #F7F9FC; }
 tbody tr:hover td { filter: brightness(0.965); }
 tbody tr:hover td.cntr { filter: none; background: #EDF2FA; }
 
 td {
-  height: 44px;
-  padding: 0;
-  text-align: center;
-  cursor: pointer;
+  height: 44px; padding: 0;
+  text-align: center; cursor: pointer;
   transition: background 0.1s;
 }
 
 td.cntr {
-  text-align: left;
-  padding: 0 8px 0 0;
-  cursor: default;
+  text-align: left; padding: 0 6px 0 0; cursor: default;
   font-family: 'Montserrat', sans-serif;
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: 10px; font-weight: 700; letter-spacing: -0.01em;
   border-right: 2px solid var(--border);
   border-left: 3px solid transparent;
-  min-width: 118px;
-  white-space: nowrap;
+  min-width: 112px; white-space: nowrap;
   color: var(--t5-navy);
 }
 
-.cntr-inner {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 0 0 0 10px;
-}
+.cntr-inner { display: flex; align-items: center; height: 100%; padding: 0 0 0 10px; }
 
 td.notes {
-  text-align: left;
-  padding: 0 8px;
-  cursor: text;
-  font-size: 9.5px;
-  color: var(--muted);
-  border-left: 2px solid var(--border);
-  min-width: 110px;
+  text-align: left; padding: 0 6px; cursor: text;
+  font-size: 9px; color: var(--muted);
+  border-left: 2px solid var(--border); min-width: 95px;
 }
-
-td.notes:empty::before {
-  content: attr(data-ph);
-  color: #C0CDD8;
-  font-style: italic;
-  font-size: 9px;
-}
-
-/* Revenue group left divider */
-td[data-si="5"] { border-left: 2px solid var(--border); }
-th.sh-r0 { border-left: 2px solid rgba(255,255,255,0.35); }
+td.notes:empty::before { content: attr(data-ph); color: #C0CDD8; font-style: italic; font-size: 8.5px; }
 
 /* Indicators */
 .ind {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  gap: 2px;
-  pointer-events: none;
-  user-select: none;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  height: 100%; gap: 2px;
+  pointer-events: none; user-select: none;
 }
-
-.ind-done { color: #A0B0C0; font-size: 12px; line-height: 1; }
-.ind-none { color: #DCE4EE; font-size: 17px; line-height: 0; }
-.ind-dot  { width: 12px; height: 12px; border-radius: 50%; display: block; }
+.ind-done { color: #A0B0C0; font-size: 11px; line-height: 1; }
+.ind-none { color: #DCE4EE; font-size: 16px; line-height: 0; }
+.ind-dot  { width: 11px; height: 11px; border-radius: 50%; display: block; }
 
 .ind-date {
-  font-size: 7.5px;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  color: #8FA4B8;
-  pointer-events: all;
-  cursor: text;
+  font-size: 7px; font-family: 'Montserrat', sans-serif; font-weight: 600;
+  letter-spacing: 0.02em; color: #8FA4B8;
+  pointer-events: all; cursor: text;
   border-bottom: 1px dashed #C8D8E8;
-  padding: 0 3px;
-  min-width: 34px;
-  text-align: center;
-  line-height: 1.5;
-  outline: none;
+  padding: 0 2px; min-width: 30px; text-align: center; line-height: 1.5; outline: none;
 }
+.ind-date:empty::before { content: 'mm/yy'; color: #D0DCE8; font-weight: 400; font-style: italic; }
+.ind-date:focus { background: #FFF3EC; border-bottom-color: var(--t5-orange); color: var(--t5-navy); border-radius: 1px; }
+.ind-date-current { color: #1A8080; border-bottom-color: #A0C8C8; }
 
-.ind-date:empty::before {
-  content: 'mm/yy';
-  color: #D0DCE8;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.ind-date:focus {
-  background: #FFF3EC;
-  border-bottom-color: var(--t5-orange);
-  color: var(--t5-navy);
-  border-radius: 1px;
-}
-
-.ind-date-current {
-  color: #1A8080;
-  border-bottom-color: #A0C8C8;
-}
-
-/* Priority marker */
+/* Priority */
 tr.priority td.cntr .pmark {
-  display: inline-block;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--t5-orange);
-  margin-right: 7px;
-  flex-shrink: 0;
+  display: inline-block; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--t5-orange); margin-right: 6px; flex-shrink: 0;
 }
-
 tr:not(.priority) .pmark { display: none; }
-
-/* Divider after priority block */
 tr.sec-break td { border-bottom: 2px solid #C5D3E0; }
 
-/* ────── LEGEND ────── */
+/* Legend */
 .legend {
-  display: flex;
-  gap: 14px;
-  margin-top: 10px;
-  padding-top: 9px;
+  display: flex; gap: 13px;
+  margin-top: 9px; padding-top: 8px;
   border-top: 1px solid var(--border);
-  font-size: 9px;
-  font-weight: 500;
-  color: var(--muted);
-  align-items: center;
-  flex-wrap: wrap;
+  font-size: 8.5px; font-weight: 500;
+  color: var(--muted); align-items: center; flex-wrap: wrap;
 }
-
-.lg-label {
-  font-weight: 800;
-  font-size: 8.5px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--t5-navy);
-}
-
+.lg-label { font-weight: 800; font-size: 8px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--t5-navy); }
 .li { display: flex; align-items: center; gap: 5px; }
 .li-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.lg-hint { margin-left: auto; font-size: 8px; font-weight: 500; color: #B8C8D8; letter-spacing: 0.04em; }
 
-.lg-hint {
-  margin-left: auto;
-  font-size: 8.5px;
-  font-weight: 500;
-  color: #B8C8D8;
-  letter-spacing: 0.04em;
-}
-
-/* ────── PRINT ────── */
 @media print {
   body { background: white; padding: 0; }
   .page { box-shadow: none; max-width: 100%; border-top: 4px solid var(--t5-orange); }
   .page::before { width: 4px; }
-  .inner { padding: 10px 14px 12px 18px; }
+  .inner { padding: 8px 12px 10px 16px; }
   .btn-print { display: none; }
-  td { height: 36px; }
-  .fstage { font-size: 7.5px; }
-  .ind-date { font-size: 7px; }
+  td { height: 34px; }
+  .fstage { font-size: 7px; }
+  .ind-date { font-size: 6.5px; }
 }
 
 [contenteditable] { outline: none; }
@@ -486,7 +288,7 @@ tr.sec-break td { border-bottom: 2px solid #C5D3E0; }
 <div class="page">
 <div class="inner">
 
-  <!-- ── Header ── -->
+  <!-- Header -->
   <div class="hd">
     <div>
       <div class="t5-logo">
@@ -509,83 +311,92 @@ tr.sec-break td { border-bottom: 2px solid #C5D3E0; }
     </div>
   </div>
 
-  <!-- ── Stage Flow ── -->
+  <!-- Stage Flow -->
   <div class="flow">
-    <div class="fstage fs-0">Prospecting</div>
-    <div class="fstage fs-1">Active Engagement</div>
-    <div class="fstage fs-c">Closing <span class="fstage-note">LOI → Contract Neg → Contract Exec</span></div>
-    <div class="fstage fs-r">Revenue <span class="fstage-note">Go-Live → First Revenue → Steady State</span></div>
+    <div class="fstage fs-p">Prospecting</div>
+    <div class="fstage fs-ae">Active Engagement <span class="fstage-note">Business Case → Proposal → Negotiation</span></div>
+    <div class="fstage fs-cl">Closing <span class="fstage-note">MOU Discussion → LOI → Contract Vehicle → Negotiations → Signed</span></div>
+    <div class="fstage fs-rv">Revenue <span class="fstage-note">Go-Live → First Revenue → Ramp</span></div>
   </div>
 
-  <!-- ── Pipeline Table ── -->
+  <!-- Table -->
   <table>
     <thead>
       <tr>
         <th class="th-cntr" rowspan="2">Country</th>
-        <th class="gh gh-s0" rowspan="2">Prospecting</th>
-        <th class="gh gh-s1" rowspan="2">Active<br>Engagement</th>
-        <th class="gh gh-cl" colspan="3">— Closing —</th>
+        <th class="gh gh-p"  rowspan="2">Prospecting</th>
+        <th class="gh gh-ae" colspan="3">— Active Engagement —</th>
+        <th class="gh gh-cl" colspan="5">— Closing —</th>
         <th class="gh gh-rv" colspan="3">— Revenue —</th>
         <th class="th-notes" rowspan="2">Notes</th>
       </tr>
       <tr>
-        <th class="sh sh-c0">LOI /<br>MOU Signed</th>
-        <th class="sh sh-c1">Contract<br>Negotiated</th>
-        <th class="sh sh-c2">Contract<br>Executed</th>
-        <th class="sh sh-r0">Go-Live /<br>Acceptance</th>
-        <th class="sh sh-r1">First<br>Revenue</th>
-        <th class="sh sh-r2">Steady<br>State</th>
+        <th class="sh sh-2">Defining<br>Business Case</th>
+        <th class="sh sh-3">Proposal<br>Submitted</th>
+        <th class="sh sh-4">Proposal<br>Negotiation</th>
+        <th class="sh sh-5">MOU<br>Discussion</th>
+        <th class="sh sh-6">MOU/LOI<br>Signed</th>
+        <th class="sh sh-7">Contract<br>Vehicle</th>
+        <th class="sh sh-8">Contract<br>Neg.</th>
+        <th class="sh sh-9">Contract<br>Signed</th>
+        <th class="sh sh-10">Go-Live</th>
+        <th class="sh sh-11">First<br>Revenue</th>
+        <th class="sh sh-12">Revenue<br>Ramp</th>
       </tr>
     </thead>
     <tbody id="tbody"></tbody>
   </table>
 
-  <!-- ── Legend ── -->
+  <!-- Legend -->
   <div class="legend">
     <span class="lg-label">Key →</span>
-    <div class="li"><span style="color:#A0B0C0;font-size:13px;font-weight:700;">✓</span> Stage complete</div>
+    <div class="li"><span style="color:#A0B0C0;font-size:12px;font-weight:700;">✓</span> Stage complete</div>
     <div class="li"><span class="li-dot" style="background:var(--t5-orange)"></span> Current stage (click to set)</div>
-    <div class="li"><span style="color:#DCE4EE;font-size:16px;line-height:0">●</span>&nbsp; Not yet reached</div>
-    <div class="li"><span class="li-dot" style="background:var(--t5-orange)"></span> Priority country (★)</div>
+    <div class="li"><span style="color:#DCE4EE;font-size:15px;line-height:0">●</span>&nbsp; Not yet reached</div>
+    <div class="li"><span class="li-dot" style="background:var(--t5-orange)"></span> Priority country</div>
     <div class="li" style="padding-left:8px;border-left:1px solid var(--border);">
-      <span>Click cell to set stage · Click again to clear · Click date to enter · Names &amp; notes editable</span>
+      <span>Click cell to set stage · Click again to clear · Click date field to enter date · Names &amp; notes editable</span>
     </div>
     <div class="lg-hint">TECH5 · Confidential Working Document</div>
   </div>
 
-</div><!-- /inner -->
-</div><!-- /page -->
+</div>
+</div>
 
 <script>
 const STAGES = [
-  { label: 'Prospecting',          color: '#5A7A9A' },
-  { label: 'Active Engagement',    color: '#1D71B8' },
-  { label: 'LOI / MOU Signed',     color: '#FFA71A' },
-  { label: 'Contract Negotiated',  color: '#F26522' },
-  { label: 'Contract Executed',    color: '#C94E15' },
-  { label: 'Go-Live / Acceptance', color: '#006767' },
-  { label: 'First Revenue',        color: '#008D36' },
-  { label: 'Steady State',         color: '#003148' },
+  { label: 'Prospecting',                   color: '#5A7A9A' },
+  { label: 'Defining Business Case',        color: '#1D71B8' },
+  { label: 'Proposal Submitted',            color: '#1660A8' },
+  { label: 'Proposal Negotiation',          color: '#0F4E98' },
+  { label: 'MOU Discussion Started',        color: '#E8981C' },
+  { label: 'MOU/LOI Signed',               color: '#F0940C' },
+  { label: 'Contract Vehicle Identified',   color: '#F26522' },
+  { label: 'Contract Negotiations',         color: '#D45018' },
+  { label: 'Contract Signed',               color: '#C94E15' },
+  { label: 'Go-Live',                       color: '#006767' },
+  { label: 'First Revenue',                 color: '#008D36' },
+  { label: 'Revenue Ramp Up',               color: '#003148' },
 ];
 
 const COUNTRIES = [
-  { name: 'Ethiopia',          priority: true,  stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Papua New Guinea',  priority: true,  stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Honduras',          priority: true,  stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 4',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 5',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 6',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 7',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 8',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 9',         priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 10',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 11',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 12',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 13',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 14',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 15',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 16',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
-  { name: 'Country 17',        priority: false, stage: -1, notes: '', dates: Array(8).fill('') },
+  { name: 'Ethiopia',          priority: true,  stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Papua New Guinea',  priority: true,  stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Honduras',          priority: true,  stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 4',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 5',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 6',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 7',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 8',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 9',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 10',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 11',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 12',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 13',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 14',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 15',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 16',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Country 17',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
 ];
 
 function buildRow(c, idx) {
@@ -593,17 +404,15 @@ function buildRow(c, idx) {
   if (c.priority) tr.classList.add('priority');
   if (idx === 2) tr.classList.add('sec-break');
 
+  // Country name
   const cntrTd = document.createElement('td');
   cntrTd.className = 'cntr';
   cntrTd.style.borderLeft = '3px solid transparent';
-
   const inner = document.createElement('div');
   inner.className = 'cntr-inner';
-
   const dot = document.createElement('span');
   dot.className = 'pmark';
   inner.appendChild(dot);
-
   const nameSpan = document.createElement('span');
   nameSpan.contentEditable = 'true';
   nameSpan.textContent = c.name;
@@ -612,6 +421,7 @@ function buildRow(c, idx) {
   cntrTd.appendChild(inner);
   tr.appendChild(cntrTd);
 
+  // Stage cells
   for (let s = 0; s < STAGES.length; s++) {
     const td = document.createElement('td');
     td.dataset.si = s;
@@ -623,6 +433,7 @@ function buildRow(c, idx) {
     tr.appendChild(td);
   }
 
+  // Notes
   const notesTd = document.createElement('td');
   notesTd.className = 'notes';
   notesTd.contentEditable = 'true';
@@ -657,7 +468,6 @@ function refreshRow(tr, c) {
     td.innerHTML = '';
     const div = document.createElement('div');
     div.className = 'ind';
-
     if (c.stage < 0) {
       div.innerHTML = `<span class="ind-none">·</span>`;
     } else if (s < c.stage) {
