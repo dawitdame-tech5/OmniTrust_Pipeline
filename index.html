@@ -269,6 +269,20 @@ tr.sec-break td { border-bottom: 2px solid #C5D3E0; }
 .li-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
 .lg-hint { margin-left: auto; font-size: 8px; font-weight: 500; color: #B8C8D8; letter-spacing: 0.04em; }
 
+/* Footnote */
+.footnote {
+  margin-top: 7px;
+  padding: 7px 10px;
+  background: #F7F9FC;
+  border-left: 3px solid var(--t5-orange);
+  font-size: 8.5px;
+  font-weight: 400;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.footnote strong { font-weight: 700; color: var(--t5-navy); }
+.fn-marker { font-weight: 700; color: var(--t5-orange); margin-right: 4px; font-size: 10px; }
+
 @media print {
   body { background: white; padding: 0; }
   .page { box-shadow: none; max-width: 100%; border-top: 4px solid var(--t5-orange); }
@@ -296,7 +310,7 @@ tr.sec-break td { border-bottom: 2px solid #C5D3E0; }
         <span class="t5-tagline">Technologies for Inclusion</span>
       </div>
       <div class="hd-title">OmniTrust · Country Pipeline Stage Gate Framework</div>
-      <div class="hd-sub">TECH5 &nbsp;·&nbsp; OmniTrust DPI Venture &nbsp;·&nbsp; 17-Country Deployment Pipeline &nbsp;·&nbsp; Pipeline Review Working Session</div>
+      <div class="hd-sub">TECH5 &nbsp;·&nbsp; OmniTrust DPI Venture &nbsp;·&nbsp; 19-Market Deployment Pipeline &nbsp;·&nbsp; Pipeline Review Working Session</div>
     </div>
     <div class="hd-meta">
       <div class="meta-field">
@@ -323,7 +337,7 @@ tr.sec-break td { border-bottom: 2px solid #C5D3E0; }
   <table>
     <thead>
       <tr>
-        <th class="th-cntr" rowspan="2">Country</th>
+        <th class="th-cntr" rowspan="2">Market</th>
         <th class="gh gh-p"  rowspan="2">Prospecting</th>
         <th class="gh gh-ae" colspan="3">— Active Engagement —</th>
         <th class="gh gh-cl" colspan="5">— Closing —</th>
@@ -353,11 +367,17 @@ tr.sec-break td { border-bottom: 2px solid #C5D3E0; }
     <div class="li"><span style="color:#A0B0C0;font-size:12px;font-weight:700;">✓</span> Stage complete</div>
     <div class="li"><span class="li-dot" style="background:var(--t5-orange)"></span> Current stage (click to set)</div>
     <div class="li"><span style="color:#DCE4EE;font-size:15px;line-height:0">●</span>&nbsp; Not yet reached</div>
-    <div class="li"><span class="li-dot" style="background:var(--t5-orange)"></span> Priority country</div>
+    <div class="li"><span class="li-dot" style="background:var(--t5-orange)"></span> Priority market</div>
     <div class="li" style="padding-left:8px;border-left:1px solid var(--border);">
       <span>Click cell to set stage · Click again to clear · Click date field to enter date · Names &amp; notes editable</span>
     </div>
     <div class="lg-hint">TECH5 · Confidential Working Document</div>
+  </div>
+
+  <!-- Footnote -->
+  <div class="footnote">
+    <span class="fn-marker">†</span>
+    Pipeline expanded from 17 to 19 markets. <strong>Saudi Arabia</strong> added following investor conversations initiated in current fundraising process. <strong>Philippines</strong> added reflecting active in-country engagement and accelerated deal progress.
   </div>
 
 </div>
@@ -383,26 +403,29 @@ const COUNTRIES = [
   { name: 'Ethiopia',          priority: true,  stage: -1, notes: '', dates: Array(12).fill('') },
   { name: 'Papua New Guinea',  priority: true,  stage: -1, notes: '', dates: Array(12).fill('') },
   { name: 'Honduras',          priority: true,  stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 4',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 5',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 6',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 7',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 8',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 9',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 10',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 11',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 12',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 13',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 14',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 15',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 16',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
-  { name: 'Country 17',        priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Somalia',           priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Botswana',          priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Djibouti',          priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Senegal',           priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Zambia',            priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Tanzania',          priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Uganda',            priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Comoros',           priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Peru',              priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Timor-Leste',       priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Colombia',          priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Guatemala',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Mauritius',         priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Fiji',              priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Saudi Arabia',      priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
+  { name: 'Philippines',       priority: false, stage: -1, notes: '', dates: Array(12).fill('') },
 ];
 
 function buildRow(c, idx) {
   const tr = document.createElement('tr');
   if (c.priority) tr.classList.add('priority');
   if (idx === 2) tr.classList.add('sec-break');
+  if (idx === 17) tr.classList.add('sec-break'); // divider before expanded markets
 
   // Country name
   const cntrTd = document.createElement('td');
@@ -418,6 +441,12 @@ function buildRow(c, idx) {
   nameSpan.textContent = c.name;
   nameSpan.addEventListener('input', e => { c.name = e.target.textContent.trim(); });
   inner.appendChild(nameSpan);
+  if (idx >= 17) {
+    const marker = document.createElement('sup');
+    marker.textContent = '†';
+    marker.style.cssText = 'color:var(--t5-orange);font-size:8px;margin-left:2px;pointer-events:none;';
+    inner.appendChild(marker);
+  }
   cntrTd.appendChild(inner);
   tr.appendChild(cntrTd);
 
